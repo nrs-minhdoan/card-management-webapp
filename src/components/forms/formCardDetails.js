@@ -49,13 +49,20 @@ class FormCardDetails extends Component {
         this.props.onHiddenModal();
     }
 
+    pressEnter = (event) => {
+        if(event.keyCode === 13 && this.props.content !== "") {
+            this.clickButtonSave();
+        }
+    }
+
     render() {
         return (
             <Wrapper>
                 <Title
                     style={{color: this.props.color}}
                     value={this.props.content}
-                    onChange={(event) => this.props.changeContent(event.target.value)}/>
+                    onChange={(event) => this.props.changeContent(event.target.value)}
+                    onKeyDown={this.pressEnter}/>
                 <Span>Description:</Span><br/>
                 <Description
                     value={this.props.description}

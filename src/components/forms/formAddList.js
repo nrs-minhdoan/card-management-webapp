@@ -20,7 +20,7 @@ const Add = styled.div`
 `
 
 const Column = styled.div`
-    width: 90%;
+    width: 93%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
