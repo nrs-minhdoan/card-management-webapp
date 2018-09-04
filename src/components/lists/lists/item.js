@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {Draggable} from "react-beautiful-dnd";
+import {connect} from 'react-redux';
+import {itemRef} from '../../../firebase/config';
 import ButtonRemoveList from '../../buttons/buttonList/buttonRemoveList';
 import ListCards from '../cards/listCard';
 import AddCard from '../../buttons/buttonCard/buttonShowAddCard';
@@ -32,7 +34,29 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     ...draggableStyle,
 });
 
-export default class Item extends Component {
+class Item extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            indexAdd: 0,
+            cards: []}
+
+        this.itemChildCard = itemRef.child(this.props.id).child("lists").child(this.props.idList).child("cards");
+    }
+
+    componentDidMount() {
+        this.itemChildCard.on("value",(snapshot) => {
+            const data = snapshot.val() || {};
+            let cards = Object.keys(data).map((key) => data[key]);
+            cards.sort((a, b) => a.index - b.index);
+            const array = cards === [] ? [{index: -1}] : cards;
+            const indexAdd = array.reduce((i, item) => (i = item.index + 1), 0);
+            console.log(indexAdd);
+            this.setState({cards, indexAdd});
+        })  
+    }
+
     render() {
         return (
             <Draggable key={this.props.idList || ""} draggableId={this.props.idList || ""} index={this.props.index}>
@@ -49,8 +73,12 @@ export default class Item extends Component {
                                 <Title>{this.props.name}</Title>
                             </div>
                             <ButtonRemoveList idList={this.props.idList}/>
-                            <ListCards idList={this.props.idList}/>
-                            <AddCard idList={this.props.idList}/>
+                            <ListCards 
+                                idList={this.props.idList}
+                                cards={this.state.cards}/>
+                            <AddCard 
+                                idList={this.props.idList}
+                                indexAdd={this.state.indexAdd}/>
                         </Wrapper>
                     </div>
                 )}
@@ -58,3 +86,11 @@ export default class Item extends Component {
         );
     };
 }
+
+const mapStateToProps = (state) => {
+    return {
+        id: state.list.id
+    }
+}
+
+export default connect(mapStateToProps)(Item);

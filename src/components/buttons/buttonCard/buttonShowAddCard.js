@@ -20,7 +20,7 @@ const Content = styled.div`
     }
 `
 
-class CardAdd extends Component {
+class AddCard extends Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +38,8 @@ class CardAdd extends Component {
             this.state.isAdd ?
                 <FormAddCard
                     onAddorCancel={this.onAddorCancel}
-                    idList={this.props.idList}/> :
+                    idList={this.props.idList}
+                    indexAdd={this.props.indexAdd}/> :
                 <Content
                     onClick={this.onAddorCancel}>
                     + Add Another Card ...
@@ -47,4 +48,4 @@ class CardAdd extends Component {
     };
 }
 
-export default CardAdd;
+export default AddCard;

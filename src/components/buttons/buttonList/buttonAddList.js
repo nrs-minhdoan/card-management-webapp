@@ -30,7 +30,9 @@ class ButtonAddList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        name: state.list.name,
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

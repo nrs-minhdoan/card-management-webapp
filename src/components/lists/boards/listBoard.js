@@ -14,7 +14,7 @@ export default class ListBoards extends Component {
 
     componentDidMount() {
         itemRef.on("value", (snapshot) => {
-            let data = snapshot.val() || {};
+            const data = snapshot.val() || {};
             let boards = Object.keys(data).map((key) => data[key]);
             this.setState({boards, isLoading: false});
         })

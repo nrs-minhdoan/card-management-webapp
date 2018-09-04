@@ -46,7 +46,7 @@ class Lists extends Component {
 
     componentDidMount() {
         this.itemChildList.on("value", (snapshot) => {
-            let data = snapshot.val() || {};
+            const data = snapshot.val() || {};
             let lists = Object.keys(data).map((key) => data[key]);
             lists.forEach((item) => {
                 let array = Object.keys(item.cards || {}).map((key) => item.cards[key])

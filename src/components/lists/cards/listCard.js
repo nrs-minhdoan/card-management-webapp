@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {Draggable, Droppable} from "react-beautiful-dnd";
-import {connect} from 'react-redux';
-import {itemRef} from '../../../firebase/config';
 import Item from './itemCard';
 
 const List = styled.div`
@@ -19,28 +17,6 @@ const getListStyle = isDraggingOver => ({
 });
 
 class ListCard extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {cards: []}
-
-        this.itemChildCard = itemRef.child(this.props.id).child("lists").child(this.props.idList).child("cards");
-    }
-
-    componentDidMount() {
-        this.itemChildCard.on("value", (snapshot) => {
-            let data = snapshot.val() || {};
-            let cards = Object.keys(data).map((key) => data[key]);
-            cards.sort((a, b) => a.index - b.index);
-            this.setState({cards});
-            this.props.getCards(cards);
-        })
-    }
-
-    componentWillUnmount() {
-        this.itemChildCard.off("value");
-    }
-
     render() {
         return (
             <List>
@@ -51,7 +27,7 @@ class ListCard extends Component {
                             style={getListStyle(snapshot.isDraggingOver)}
                             {...provided.droppableProps}>
                             {
-                                this.state.cards.map((item, index) => (
+                                this.props.cards.map((item, index) => (
                                     <Draggable
                                         key={item.idCard || ""}
                                         draggableId={item.idCard || ""}
@@ -83,18 +59,4 @@ class ListCard extends Component {
     };
 }
 
-const mapStateToProps = (state) => {
-    return {
-        id: state.list.id
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getCards: (cards) => {
-            dispatch({type: "GET_CARDS", cards})
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListCard);
+export default ListCard;

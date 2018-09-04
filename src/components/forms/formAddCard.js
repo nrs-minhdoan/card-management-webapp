@@ -46,10 +46,8 @@ class FormAddCard extends Component {
     }
 
     onAddCard = () => {
-        const array = this.props.cards === [] ? [{index: -1}] : this.props.cards;
-        const index = array.reduce((i, item) => (i = item.index + 1), 0);
-        console.log(index);
-        createNewCard(this.props.id, this.props.idList, this.state.content, index);
+        console.log(this.props.id + " " + this.props.idList + " " + this.state.content + " " + this.props.indexAdd);
+        createNewCard(this.props.id, this.props.idList, this.state.content, this.props.indexAdd);
         this.setState({content: ""});
         this.props.onAddorCancel();
     }
@@ -79,7 +77,6 @@ class FormAddCard extends Component {
 const mapStateToProps = (state) => {
     return {
         id: state.list.id,
-        cards: state.card.cards,
     }
 }
 

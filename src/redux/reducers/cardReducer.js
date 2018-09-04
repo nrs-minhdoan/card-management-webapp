@@ -9,9 +9,6 @@ var intialState = {
 
 export const cardReducer = (state = intialState, action) => {
     switch (action.type) {
-        case "GET_CARDS":
-            return {...state, cards: action.cards};
-
         case "SHOW_DETAIL":
             return {...state, isShowing: "block"};
 
