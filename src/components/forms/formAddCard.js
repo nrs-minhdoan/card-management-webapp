@@ -46,7 +46,9 @@ class FormAddCard extends Component {
     }
 
     onAddCard = () => {
-        const index = this.props.cards.length;
+        const array = this.props.cards === [] ? [{index: -1}] : this.props.cards;
+        const index = array.reduce((i, item) => (i = item.index + 1), 0);
+        console.log(index);
         createNewCard(this.props.id, this.props.idList, this.state.content, index);
         this.setState({content: ""});
         this.props.onAddorCancel();

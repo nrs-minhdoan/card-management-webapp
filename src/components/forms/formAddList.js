@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
+import {createNewList} from '../../firebase/list';
 import TextInput from '../inputs/inputNameList';
 import ButtonAddList from '../buttons/buttonList/buttonAddList';
 
@@ -45,12 +46,20 @@ class FormAddList extends Component {
         this.props.resetAddList();
     }
 
+    onAddList = () => {
+        const array = this.props.lists === [] ? [{index: -1}] : this.props.lists;
+        const index = array.reduce((i, item) => (i = item.index + 1), 0);
+        createNewList(this.props.id, this.props.name, index);
+        this.props.resetAddList();
+        this.props.changeStatus();
+    }
+
     render() {
         return (
             <Add>
-                <TextInput/>
+                <TextInput onAddList={this.onAddList}/>
                 <Column>
-                    <ButtonAddList/>
+                    <ButtonAddList onAddList={this.onAddList}/>
                     <Close onClick={this.onClose}>
                         &times;
                     </Close>
@@ -61,7 +70,11 @@ class FormAddList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        id: state.list.id,
+        name: state.list.name,
+        lists: state.list.lists,
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

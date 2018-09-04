@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {createNewList} from '../../../firebase/list';
 
 const Button = styled.button`
     padding-top: 2px;
@@ -16,13 +15,6 @@ const Button = styled.button`
 `
 
 class ButtonAddList extends Component {
-    onClickButton = () => {
-        const index = this.props.lists.length;
-        createNewList(this.props.id, this.props.name, index);
-        this.props.resetAddList();
-        this.props.changeStatus();
-    }
-
     render() {
         return (
             <Button
@@ -30,7 +22,7 @@ class ButtonAddList extends Component {
                     {background: "rgb(165, 172, 176)", color: "black"} :
                     {background: "rgb(90, 172, 68)", color: "white"}}
                 disabled={this.props.name === "" ? true : false}
-                onClick={this.onClickButton}>
+                onClick={this.props.onAddList}>
                 Add List
             </Button>
         );
@@ -38,12 +30,7 @@ class ButtonAddList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        name: state.list.name,
-        index: state.list.index,
-        id: state.list.id,
-        lists: state.list.lists,
-    }
+    return {}
 }
 
 const mapDispatchToProps = (dispatch) => {

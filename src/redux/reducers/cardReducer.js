@@ -5,7 +5,6 @@ var intialState = {
     description: "",
     index: 0,
     idList: "",
-    cards: [],
 };
 
 export const cardReducer = (state = intialState, action) => {

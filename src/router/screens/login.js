@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
 import {ScaleLoader} from 'react-spinners';
 import {connect} from 'react-redux';
+// import {userSignIn} from '../../redux/sagas/userSaga';
 import {signIn} from '../../firebase/user';
 import color from '../../constants/color';
 import {logoLogin} from '../../constants/logo';
@@ -64,6 +65,7 @@ class Login extends Component {
     onSignIn = () => {
         this.props.signIn();
         signIn(this.props);
+        // userSignIn(this.props);
     }
 
     render() {

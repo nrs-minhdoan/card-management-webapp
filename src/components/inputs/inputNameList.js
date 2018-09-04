@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {createNewList} from '../../firebase/list';
 
 const Input = styled.input`
     width: 90%;
@@ -17,10 +16,7 @@ class TextInput extends Component {
 
     pressEnter = (event) => {
         if (event.keyCode === 13 && this.props.name !== "") {
-            const index = this.props.lists.length;
-            createNewList(this.props.id, this.props.name, index);
-            this.props.resetAddList();
-            this.props.changeStatus();
+            this.props.onAddList()
         }
     }
 
@@ -39,9 +35,6 @@ class TextInput extends Component {
 const mapStateToProps = (state) => {
     return {
         name: state.list.name,
-        index: state.list.index,
-        id: state.list.id,
-        lists: state.list.lists,
     }
 }
 
