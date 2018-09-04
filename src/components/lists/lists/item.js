@@ -52,7 +52,6 @@ class Item extends Component {
             cards.sort((a, b) => a.index - b.index);
             const array = cards === [] ? [{index: -1}] : cards;
             const indexAdd = array.reduce((i, item) => (i = item.index + 1), 0);
-            console.log(indexAdd);
             this.setState({cards, indexAdd});
         })  
     }
