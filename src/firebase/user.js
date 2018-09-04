@@ -5,7 +5,6 @@ export const signIn = (props) => {
     firebaseApp.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
             props.history.replace(`/boards`);
-            console.log(props);
         })
         .catch((e) => {
             console.log("Error !!! " + e);
