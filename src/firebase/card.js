@@ -1,11 +1,11 @@
 import {itemRef} from './config';
 
-export const createNewCard = (id, idList, content) => {
+export const createNewCard = (id, idList, content, index) => {
     const idCard = itemRef.child(id).child("lists").child(idList).child("cards").push().key
     itemRef.child(id).child("lists").child(idList).child("cards").child(idCard).set({
         idCard,
         content,
-        index: 0,
+        index,
         description: "",
     });
 }

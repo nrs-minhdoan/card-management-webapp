@@ -4,16 +4,20 @@ var intialState = {
     content: "",
     description: "",
     index: 0,
-    idList: ""
+    idList: "",
+    cards: [],
 };
 
 export const cardReducer = (state = intialState, action) => {
     switch (action.type) {
+        case "GET_CARDS":
+            return {...state, cards: action.cards};
+
         case "SHOW_DETAIL":
-            return {...state, isShowing: "block"}
+            return {...state, isShowing: "block"};
 
         case "HIDDEN_DETAIL":
-            return {...state, isShowing: "none"}
+            return {...state, isShowing: "none"};
 
         case "GET_DETAIL":
             return {
@@ -23,13 +27,13 @@ export const cardReducer = (state = intialState, action) => {
                 description: action.description,
                 index: action.index,
                 idList: action.idList
-            }
-
+            };
+        
         case "CHANGE_CONTENT":
-            return {...state, content: action.content}
+            return {...state, content: action.content};
 
         case "CHANGE_DESCRIPTION":
-            return {...state, description: action.description}
+            return {...state, description: action.description};
 
         default:
             return state;

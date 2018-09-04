@@ -17,7 +17,8 @@ const Button = styled.button`
 
 class ButtonAddList extends Component {
     onClickButton = () => {
-        createNewList(this.props.id, this.props.name);
+        const index = this.props.lists.length;
+        createNewList(this.props.id, this.props.name, index);
         this.props.resetAddList();
         this.props.changeStatus();
     }
@@ -40,7 +41,8 @@ const mapStateToProps = (state) => {
     return {
         name: state.list.name,
         index: state.list.index,
-        id: state.list.id
+        id: state.list.id,
+        lists: state.list.lists,
     }
 }
 

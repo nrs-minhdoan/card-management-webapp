@@ -1,4 +1,4 @@
-import color from '../constants/color';
+import color from '../../constants/color';
 
 var intialState = {
     title: "",
@@ -9,10 +9,10 @@ var intialState = {
 export const boardReducer = (state = intialState, action) => {
     switch (action.type) {
         case "SHOW_MODAL":
-            return {...state, isShowing: "block"}
+            return {...state, isShowing: "block"};
 
         case "HIDDEN_MODAL":
-            return {...state, isShowing: "none"}
+            return {...state, isShowing: "none"};
 
         case "CHANGE_TITLE":
             return {...state, title: action.title};

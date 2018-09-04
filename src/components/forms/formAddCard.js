@@ -46,7 +46,8 @@ class FormAddCard extends Component {
     }
 
     onAddCard = () => {
-        createNewCard(this.props.id, this.props.idList, this.state.content);
+        const index = this.props.cards.length;
+        createNewCard(this.props.id, this.props.idList, this.state.content, index);
         this.setState({content: ""});
         this.props.onAddorCancel();
     }
@@ -76,6 +77,7 @@ class FormAddCard extends Component {
 const mapStateToProps = (state) => {
     return {
         id: state.list.id,
+        cards: state.card.cards,
     }
 }
 

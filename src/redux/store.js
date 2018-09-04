@@ -1,8 +1,11 @@
-import {combineReducers, createStore} from 'redux';
-import {userReducer} from './userReducer';
-import {boardReducer} from './boardReducer';
-import {listReducer} from './listReducer';
-import {cardReducer} from './cardReducer';
+import {combineReducers, createStore, applyMiddleware} from 'redux';
+import {userReducer} from './reducers/userReducer';
+import {boardReducer} from './reducers/boardReducer';
+import {listReducer} from './reducers/listReducer';
+import {cardReducer} from './reducers/cardReducer';
+import createSagaMiddleware from 'redux-saga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const allReducers = combineReducers({
     user: userReducer,
@@ -11,6 +14,6 @@ const allReducers = combineReducers({
     card: cardReducer
 })
 
-const store = createStore(allReducers);
+const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 
 export default store;

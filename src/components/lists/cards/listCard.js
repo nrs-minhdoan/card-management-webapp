@@ -33,6 +33,7 @@ class ListCard extends Component {
             let cards = Object.keys(data).map((key) => data[key]);
             cards.sort((a, b) => a.index - b.index);
             this.setState({cards});
+            this.props.getCards(cards);
         })
     }
 
@@ -88,4 +89,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ListCard);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getCards: (cards) => {
+            dispatch({type: "GET_CARDS", cards})
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListCard);

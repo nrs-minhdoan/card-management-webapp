@@ -54,6 +54,7 @@ class Lists extends Component {
             })
             lists.sort((a, b) => a.index - b.index);
             this.setState({lists, isLoading: false});
+            this.props.getList(lists);
         })
     }
 
@@ -193,4 +194,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Lists);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getList: (lists) => {
+            dispatch({type: "GET_LISTS", lists})
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lists);
