@@ -167,8 +167,8 @@ class Lists extends Component {
                     <Droppable droppableId="droppable" type="list" direction="horizontal">
                         {(provided, snapshot) => (
                             <div ref={provided.innerRef}
-                                 style={getListStyle(snapshot.isDraggingOver)}
-                                 {...provided.droppableProps}>
+                                style={getListStyle(snapshot.isDraggingOver)}
+                                {...provided.droppableProps}>
                                 {
                                     this.state.lists.map((item, index) => (
                                         <Item

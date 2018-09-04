@@ -39,7 +39,7 @@ const Context = styled.h4`
 
 const Wrapper = styled.div`
     padding-top: 110px;
-    height: 100%;
+    min-height: 77vh;
     overflow-x: auto;
     overflow-y: hidden;
 `
