@@ -20,7 +20,9 @@ const Wrapper = styled.div`
     margin-top: 20px;
     float: left;
     width: 220px;
-    max-height: 100%;
+    max-height: 85%;
+    overflow-x: hidden;
+    overflow-y: auto;
     border-radius: 5px;
     border: none;
     text-align: center;

@@ -8,7 +8,7 @@ import ButtonRemoveBoard from '../../components/buttons/buttonBoard/buttonRemove
 import Lists from '../../components/lists/lists/list';
 
 const Body = styled.div`
-    min-height: 92vh;
+    height: 93vh;
 `
 
 const Title = styled.div`
@@ -39,7 +39,7 @@ const Context = styled.h4`
 
 const Wrapper = styled.div`
     padding-top: 110px;
-    min-height: 77vh;
+    height: 77vh;
     overflow-x: auto;
     overflow-y: hidden;
 `
